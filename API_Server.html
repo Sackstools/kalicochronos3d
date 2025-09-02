@@ -466,6 +466,41 @@
   
   
   
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bleeding Edge
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bleeding Edge
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="Bleeding_Edge.html" class="md-nav__link">
         
@@ -497,6 +532,35 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Nonlinear_Pressure_Advance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nonlinear Pressure Advance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1685,18 +1749,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#hx71xdump_hx71x" class="md-nav__link">
+  <a href="#load_celldump_force" class="md-nav__link">
     <span class="md-ellipsis">
-      hx71x/dump_hx71x
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ads1220dump_ads1220" class="md-nav__link">
-    <span class="md-ellipsis">
-      ads1220/dump_ads1220
+      load_cell/dump_force
     </span>
   </a>
   
@@ -2130,9 +2185,50 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Load_Cell.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Load Cells
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Telemetry.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kalico Telemetry
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2385,18 +2481,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#hx71xdump_hx71x" class="md-nav__link">
+  <a href="#load_celldump_force" class="md-nav__link">
     <span class="md-ellipsis">
-      hx71x/dump_hx71x
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ads1220dump_ads1220" class="md-nav__link">
-    <span class="md-ellipsis">
-      ads1220/dump_ads1220
+      load_cell/dump_force
     </span>
   </a>
   
@@ -2749,32 +2836,18 @@ and might later produce asynchronous messages such as:
 "data":[[1290.951905,-5063],[1290.952321,-5065]]}}</code></p>
 <p>The "header" field in the initial query response is used to describe
 the fields found in later "data" responses.</p>
-<h3 id="hx71xdump_hx71x">hx71x/dump_hx71x<a class="headerlink" href="#hx71xdump_hx71x" title="Permanent link">&para;</a></h3>
-<p>This endpoint is used to subscribe to raw HX711 and HX717 ADC data.
-Obtaining these low-level ADC updates may be useful for diagnostic
-and debugging purposes. Using this endpoint may increase Kalico's
-system load.</p>
+<h3 id="load_celldump_force">load_cell/dump_force<a class="headerlink" href="#load_celldump_force" title="Permanent link">&para;</a></h3>
+<p>This endpoint is used to subscribe to force data produced by a load_cell.
+Using this endpoint may increase Klipper's system load.</p>
 <p>A request may look like:
-<code>{"id": 123, "method":"hx71x/dump_hx71x",
+<code>{"id": 123, "method":"load_cell/dump_force",
 "params": {"sensor": "load_cell", "response_template": {}}}</code>
 and might return:
-<code>{"id": 123,"result":{"header":["time","counts","value"]}}</code>
+<code>{"id": 123,"result":{"header":["time", "force (g)", "counts", "tare_counts"]}}</code>
 and might later produce asynchronous messages such as:
-<code>{"params":{"data":[[3292.432935, 562534, 0.067059278],
-[3292.4394937, 5625322, 0.670590639]]}}</code></p>
-<h3 id="ads1220dump_ads1220">ads1220/dump_ads1220<a class="headerlink" href="#ads1220dump_ads1220" title="Permanent link">&para;</a></h3>
-<p>This endpoint is used to subscribe to raw ADS1220 ADC data.
-Obtaining these low-level ADC updates may be useful for diagnostic
-and debugging purposes. Using this endpoint may increase Kalico's
-system load.</p>
-<p>A request may look like:
-<code>{"id": 123, "method":"ads1220/dump_ads1220",
-"params": {"sensor": "load_cell", "response_template": {}}}</code>
-and might return:
-<code>{"id": 123,"result":{"header":["time","counts","value"]}}</code>
-and might later produce asynchronous messages such as:
-<code>{"params":{"data":[[3292.432935, 562534, 0.067059278],
-[3292.4394937, 5625322, 0.670590639]]}}</code></p>
+<code>{"params":{"data":[[3292.432935, 40.65, 562534, -234467]]}}</code></p>
+<p>The "header" field in the initial query response is used to describe
+the fields found in later "data" responses.</p>
 <h3 id="pause_resumecancel">pause_resume/cancel<a class="headerlink" href="#pause_resumecancel" title="Permanent link">&para;</a></h3>
 <p>This endpoint is similar to running the "PRINT_CANCEL" G-Code command.
 For example:

@@ -466,6 +466,41 @@
   
   
   
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bleeding Edge
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bleeding Edge
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="Bleeding_Edge.html" class="md-nav__link">
         
@@ -497,6 +532,35 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Nonlinear_Pressure_Advance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nonlinear Pressure Advance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1679,6 +1743,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#stm32h743-step-rate-benchmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      STM32H743 step rate benchmark
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#stm32h7-step-rate-benchmark" class="md-nav__link">
     <span class="md-ellipsis">
       STM32H7 step rate benchmark
@@ -2085,9 +2158,50 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Load_Cell.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Load Cells
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Telemetry.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kalico Telemetry
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2244,6 +2358,15 @@
   <a href="#stm32f4-step-rate-benchmark" class="md-nav__link">
     <span class="md-ellipsis">
       STM32F4 step rate benchmark
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stm32h743-step-rate-benchmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      STM32H743 step rate benchmark
     </span>
   </a>
   
@@ -2705,7 +2828,7 @@ results were obtained by running an STM32F407 binary on an STM32F446
 </tr>
 </tbody>
 </table>
-<h3 id="stm32h7-step-rate-benchmark">STM32H7 step rate benchmark<a class="headerlink" href="#stm32h7-step-rate-benchmark" title="Permanent link">&para;</a></h3>
+<h3 id="stm32h743-step-rate-benchmark">STM32H743 step rate benchmark<a class="headerlink" href="#stm32h743-step-rate-benchmark" title="Permanent link">&para;</a></h3>
 <p>The following configuration sequence is used on a STM32H743VIT6:</p>
 <div class="highlight"><pre><span></span><code>allocate_oids count=3
 config_stepper oid=0 step_pin=PD4 dir_pin=PD3 invert_step=-1 step_pulse_ticks=0
@@ -2732,6 +2855,35 @@ finalize_config crc=0
 <tr>
 <td>3 stepper</td>
 <td>198</td>
+</tr>
+</tbody>
+</table>
+<h3 id="stm32h7-step-rate-benchmark">STM32H7 step rate benchmark<a class="headerlink" href="#stm32h7-step-rate-benchmark" title="Permanent link">&para;</a></h3>
+<p>The following configuration sequence is used on STM32H723:</p>
+<div class="highlight"><pre><span></span><code>allocate_oids count=3
+config_stepper oid=0 step_pin=PA13 dir_pin=PB5 invert_step=-1 step_pulse_ticks=52
+config_stepper oid=1 step_pin=PB2 dir_pin=PB6 invert_step=-1 step_pulse_ticks=52
+config_stepper oid=2 step_pin=PB3 dir_pin=PB7 invert_step=-1 step_pulse_ticks=52
+finalize_config crc=0
+</code></pre></div>
+
+<p>The test was last run on commit <code>554ae78d</code> with gcc version
+<code>arm-none-eabi-gcc (Fedora 14.1.0-1.fc40) 14.1.0</code>.</p>
+<table>
+<thead>
+<tr>
+<th>stm32h723</th>
+<th>ticks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 stepper</td>
+<td>70</td>
+</tr>
+<tr>
+<td>3 stepper</td>
+<td>181</td>
 </tr>
 </tbody>
 </table>
