@@ -1,12 +1,11 @@
 # PWM and digital output pin handling
 #
-# Copyright (C) 2017-2024  Kevin O'Connor <kevin@koconnor.net>
+# Copyright (C) 2017-2025  Kevin O'Connor <kevin@koconnor.net>
 #
 # This file may be distributed under the terms of the GNU GPLv3 license.
 
 PIN_MIN_TIME = 0.100
 RESEND_HOST_TIME = 0.300 + PIN_MIN_TIME
-MAX_SCHEDULE_TIME = 5.0
 
 
 class PrinterOutputPin:
@@ -17,8 +16,9 @@ class PrinterOutputPin:
         self.is_pwm = config.getboolean("pwm", False)
         if self.is_pwm:
             self.mcu_pin = ppins.setup_pin("pwm", config.get("pin"))
+            max_duration = self.mcu_pin.get_mcu().max_nominal_duration()
             cycle_time = config.getfloat(
-                "cycle_time", 0.100, above=0.0, maxval=MAX_SCHEDULE_TIME
+                "cycle_time", 0.100, above=0.0, maxval=max_duration
             )
             hardware_pwm = config.getboolean("hardware_pwm", False)
             self.mcu_pin.setup_cycle_time(cycle_time, hardware_pwm)
@@ -31,8 +31,9 @@ class PrinterOutputPin:
         self.reactor = self.printer.get_reactor()
         self.resend_timer = None
         self.resend_interval = 0.0
+        max_duration = self.mcu_pin.get_mcu().max_nominal_duration()
         max_mcu_duration = config.getfloat(
-            "maximum_mcu_duration", 0.0, minval=0.500, maxval=MAX_SCHEDULE_TIME
+            "maximum_mcu_duration", 0.0, minval=0.500, maxval=max_duration
         )
         self.mcu_pin.setup_max_duration(max_mcu_duration)
         if max_mcu_duration:
