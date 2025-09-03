@@ -30,6 +30,9 @@ jobs:
               - 'scripts/check-gcc.sh'
 
       # Always pull the latest image to take advantage of layer caching
+      - copy scripts/or1k-linux-musl-cross-10.tgz /ci_cache/or1k-linux-musl-cross-10.tgz
+      - run tar -x -C /ci_build -f /ci_cache/or1k-linux-musl-cross-10.tgz
+      
       - name: Pull docker image
         run: docker pull dangerklippers/klipper-build:latest
 
