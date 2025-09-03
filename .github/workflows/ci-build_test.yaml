@@ -30,9 +30,6 @@ jobs:
               - 'scripts/check-gcc.sh'
 
       # Always pull the latest image to take advantage of layer caching
-      - copy: scripts/or1k-linux-musl-cross-10.tgz /ci_cache/or1k-linux-musl-cross-10.tgz
-      - run: tar -x -C /ci_build -f /ci_cache/or1k-linux-musl-cross-10.tgz
-      
       - name: Pull docker image
         run: docker pull dangerklippers/klipper-build:latest
 
@@ -47,7 +44,10 @@ jobs:
           command: |
             docker run -v $PWD:/klipper dangerklippers/klipper-build:latest uv export --frozen -o scripts/klippy-requirements.txt --no-dev --no-hashes
             docker run -v $PWD:/klipper dangerklippers/klipper-build:latest uv export --frozen -o scripts/requirements_dev.txt --only-dev --no-hashes
-
+            
+      - copy: scripts/or1k-linux-musl-cross-10.tgz /ci_cache/or1k-linux-musl-cross-10.tgz
+        run: tar -x -C /ci_build -f /ci_cache/or1k-linux-musl-cross-10.tgz
+        
       # This *could* be done with a matrix, but then we would have to figure out sharing the docker image between builds
       - name: Test Klippy (Python 3.9)
         run: docker run -v $PWD:/klipper dangerklippers/klipper-build:latest --python 3.9  py.test -n auto
